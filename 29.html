@@ -1,0 +1,21 @@
+HTML File
+<html>
+<form action=slip29.php method=get>
+Enter Event Name:<input type=text name=t1><br>
+<input type=submit value="Change Status">
+</form>
+</html>
+PHP File
+<?php
+ MOBILE: 9730381255 | WWW.NRCLASSESPUNE.COM | WWW.BCSBCA.COM$con=pg_connect("host=localhost user=postgres password=nrc bname=practicals22");
+//echo $con;
+$en=$_GET['t1'];
+$ws='Working';
+$x=pg_query($con,"update comm_mem set cstatus='$ws' from event_comm,event
+where comm_mem.cno=event_comm.cno and event_comm.eno=event.eno and
+etitle='$en'");
+if($x>0)
+ echo "Working status updated";
+else
+ echo "Status not updated";
+ ?> 
